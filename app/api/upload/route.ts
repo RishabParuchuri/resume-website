@@ -12,9 +12,9 @@ export async function POST(req: NextRequest) {
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
 
-  let fullText = '';
-
-  return new Promise((resolve) => {
+  return new Promise<NextResponse>((resolve) => {
+    let fullText = '';
+    
     new PdfReader().parseBuffer(buffer, (err, item) => {
       if (err) {
         console.error("PDF parsing error:", err);
